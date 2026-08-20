@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiltable Dashboard — Every table, one screen.</title>
+  <meta name="description" content="The Tiltable fleet dashboard: live table status, response-time tracking, a demand heatmap, and device/battery health for your whole floor." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tiltable" />
+  <meta property="og:title" content="Tiltable Dashboard — Every table, one screen." />
+  <meta property="og:description" content="Live table status, response-time tracking, a demand heatmap, and device health — all from a laptop, tablet or the monitor behind the bar." />
+  <meta property="og:locale" content="en_US" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%230A0A0B'/%3E%3Crect x='16' y='45' width='32' height='6' rx='3' fill='%2319C36B'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: 'var(--tiltable-ink)', paper: 'var(--tiltable-paper)', mist: 'var(--tiltable-mist)',
+            line: 'var(--tiltable-line)', subtle: 'var(--tiltable-subtle)',
+            tiltable: { green: 'var(--tiltable-green)', deep: 'var(--tiltable-green-deep)', soft: 'var(--tiltable-green-soft)' },
+          },
+          fontFamily: { sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'] },
+          letterSpacing: { tightest: '-0.03em' },
+          fontSize: {
+            hero: ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '1.04', letterSpacing: '-0.03em', fontWeight: '300' }],
+            display: ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '300' }],
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(10,10,11,.03), 0 12px 32px rgba(10,10,11,.06)',
+            lift: '0 8px 24px rgba(10,10,11,.08), 0 32px 72px rgba(10,10,11,.12)',
+          },
+          borderRadius: { xl2: '32px' },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header id="site-nav">
+    <nav class="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10" aria-label="Primary">
+      <a href="index.html" class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+        Tiltable
+      </a>
+      <ul class="hidden items-center gap-9 text-[0.9rem] md:flex">
+        <li><a href="index.html" class="nav-link">Product</a></li>
+        <li><a href="dashboard.html" class="nav-link" aria-current="page">Dashboard</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="design.html" class="nav-link">Design</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="waitlist.html" class="btn btn-accent hidden sm:inline-flex">Join the waitlist</a>
+        <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center text-ink md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden">
+      <ul class="flex flex-col gap-1 px-6 py-4 text-[0.95rem]">
+        <li><a href="index.html" class="mobile-nav-link flex items-center justify-between py-3">Product <span class="current-dot h-1.5 w-1.5 rounded-full bg-tiltable-green opacity-0"></span></a></li>
+        <li><a href="dashboard.html" class="mobile-nav-link flex items-center justify-between py-3" aria-current="page">Dashboard <span class="current-dot h-1.5 w-1.5 rounded-full bg-tiltable-green opacity-0"></span></a></li>
+        <li><a href="service.html" class="mobile-nav-link flex items-center justify-between py-3">Service</a></li>
+        <li><a href="design.html" class="mobile-nav-link flex items-center justify-between py-3">Design</a></li>
+        <li class="pt-2 pb-2"><a href="waitlist.html" class="btn btn-accent btn-block">Join the waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================= HERO ============================= -->
+    <section class="px-6 pb-20 pt-40 lg:px-10 lg:pt-48">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow justify-center">Fleet dashboard</p>
+        <h1 class="mt-5 text-hero font-light text-ink text-balance">Every table, one screen.</h1>
+        <p class="mx-auto mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-subtle">
+          See which tables are calling, how long they've waited, and how your floor is performing — live, from a
+          laptop, a tablet, or the monitor behind the bar.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a href="waitlist.html" class="btn btn-accent">Join the waitlist</a>
+          <a href="#live-demo" class="btn btn-ghost">Try the live demo</a>
+        </div>
+      </div>
+
+      <!-- HTML/CSS software mockup (not a screenshot image) -->
+      <div class="reveal mx-auto mt-16 max-w-4xl">
+        <div class="window-frame">
+          <div class="window-chrome">
+            <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
+            <span class="ml-3 text-xs font-medium text-subtle">Tiltable Dashboard — Overview</span>
+          </div>
+          <div class="p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p class="text-sm font-semibold text-ink">Friday dinner service</p>
+                <p class="text-xs text-subtle">Main floor · 12 tables</p>
+              </div>
+              <span class="inline-flex items-center gap-2 rounded-full bg-tiltable-soft px-3 py-1.5 text-xs font-semibold text-tiltable-deep">
+                <span class="h-1.5 w-1.5 rounded-full bg-tiltable-green led-pulse"></span> 3 tables calling
+              </span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-3 gap-3">
+              <div class="stat-tile !p-4">
+                <p class="stat-value tabular">1:42</p>
+                <p class="stat-label">Avg. response</p>
+              </div>
+              <div class="stat-tile !p-4">
+                <p class="stat-value tabular">3</p>
+                <p class="stat-label">Active calls</p>
+              </div>
+              <div class="stat-tile !p-4">
+                <p class="stat-value tabular">12/12</p>
+                <p class="stat-label">Devices online</p>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-6 gap-2.5" aria-hidden="true">
+              <div class="table-tile !aspect-auto !h-14 is-calling"><span class="ping"></span><span class="t-num tabular text-xs">1</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">2</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">3</span></div>
+              <div class="table-tile !aspect-auto !h-14 is-calling"><span class="ping"></span><span class="t-num tabular text-xs">4</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">5</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">6</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">7</span></div>
+              <div class="table-tile !aspect-auto !h-14 is-calling"><span class="ping"></span><span class="t-num tabular text-xs">8</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">9</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">10</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">11</span></div>
+              <div class="table-tile !aspect-auto !h-14"><span class="t-num tabular text-xs">12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= LIVE DEMO ============================= -->
+    <section id="live-demo" class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Live demo</p>
+          <h2 class="mt-4 text-display font-light text-ink">This is what your floor looks like</h2>
+          <p class="mt-5 text-[1.0625rem] leading-relaxed text-subtle">
+            Calls arrive on their own below — this is a simulation, not a connection to a real restaurant. Click
+            "Mark served" on a calling table to clear it, just like your staff would from the dashboard.
+          </p>
+        </div>
+
+        <div class="reveal mt-14 window-frame">
+          <div class="window-chrome">
+            <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
+            <span class="ml-3 text-xs font-medium text-subtle">Tiltable Dashboard — Live (simulated)</span>
+          </div>
+          <div class="grid grid-cols-1 gap-8 p-6 md:grid-cols-[1fr_240px] md:p-8">
+            <div id="demo-floor-grid" class="floor-grid" role="list" aria-label="Simulated floor plan with 12 tables"></div>
+            <div class="space-y-3">
+              <div class="stat-tile">
+                <p class="stat-value tabular" id="stat-avg-response">—</p>
+                <p class="stat-label">Avg. response time</p>
+              </div>
+              <div class="stat-tile">
+                <p class="stat-value tabular" id="stat-active-calls">0</p>
+                <p class="stat-label">Active calls</p>
+              </div>
+              <div class="stat-tile">
+                <p class="stat-value tabular" id="stat-calls-today">0</p>
+                <p class="stat-label">Calls served</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= RESPONSE TIME ============================= -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal order-2 md:order-1">
+          <p class="eyebrow">Response time</p>
+          <h2 class="mt-4 text-display font-light text-ink">Know exactly how fast your floor really is</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            Every call is timestamped from the moment a guest flips their device to the moment a server clears
+            it. See averages by shift, by table, or by section — the numbers your gut feeling can't give you.
+          </p>
+        </div>
+        <div class="reveal order-1 card bg-white p-8 md:order-2">
+          <p class="mb-6 text-xs font-semibold uppercase tracking-wide text-subtle">Avg. response by shift · sample view</p>
+          <div class="space-y-5">
+            <div>
+              <div class="flex items-center justify-between text-sm"><span class="text-ink">Lunch</span><span class="tabular text-subtle">0:58</span></div>
+              <div class="mt-2 h-2 rounded-full bg-line"><div class="h-2 rounded-full bg-tiltable-green" style="width:38%"></div></div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm"><span class="text-ink">Dinner</span><span class="tabular text-subtle">1:47</span></div>
+              <div class="mt-2 h-2 rounded-full bg-line"><div class="h-2 rounded-full bg-tiltable-green" style="width:68%"></div></div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm"><span class="text-ink">Late night</span><span class="tabular text-subtle">1:12</span></div>
+              <div class="mt-2 h-2 rounded-full bg-line"><div class="h-2 rounded-full bg-tiltable-green" style="width:48%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= ANALYTICS + HEATMAP ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal card bg-mist p-8">
+          <p class="mb-6 text-xs font-semibold uppercase tracking-wide text-subtle">Call volume by table · sample view</p>
+          <div class="heat-grid">
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 15%, white)">1</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 55%, white)">2</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 80%, white)">3</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 30%, white)">4</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 10%, white)">5</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 45%, white)">6</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 90%, white)">7</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 60%, white)">8</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 25%, white)">9</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 15%, white)">10</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 70%, white)">11</div>
+            <div class="heat-cell" style="background:color-mix(in srgb, var(--tiltable-green) 35%, white)">12</div>
+          </div>
+          <p class="mt-5 text-xs text-subtle">Darker = more calls. Illustrative pattern, based on simulated data.</p>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Analytics</p>
+          <h2 class="mt-4 text-display font-light text-ink">See demand before it becomes a problem</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            A floor-plan heatmap shows which tables call most often, and when. Staff sections accordingly, or
+            rethink a layout that's quietly overwhelming one corner of the room.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= DEVICE MANAGEMENT ============================= -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal order-2 md:order-1">
+          <p class="eyebrow">Fleet health</p>
+          <h2 class="mt-4 text-display font-light text-ink">Every device, accounted for</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            See battery level, connection status and last-seen time for every table device in the building — so
+            a dead battery gets caught at the charging tray, not in the middle of Saturday dinner service.
+          </p>
+        </div>
+        <div class="reveal order-1 card bg-white p-6 md:order-2 md:p-8">
+          <div class="device-row">
+            <span class="status-dot online"></span>
+            <span class="w-16 text-sm font-medium text-ink">Table 1</span>
+            <div class="battery-bar flex-1"><span style="width:92%"></span></div>
+            <span class="w-10 text-right text-xs tabular text-subtle">92%</span>
+          </div>
+          <div class="device-row">
+            <span class="status-dot online"></span>
+            <span class="w-16 text-sm font-medium text-ink">Table 2</span>
+            <div class="battery-bar flex-1"><span style="width:76%"></span></div>
+            <span class="w-10 text-right text-xs tabular text-subtle">76%</span>
+          </div>
+          <div class="device-row">
+            <span class="status-dot online"></span>
+            <span class="w-16 text-sm font-medium text-ink">Table 3</span>
+            <div class="battery-bar flex-1"><span style="width:18%"></span></div>
+            <span class="w-10 text-right text-xs tabular text-subtle">18%</span>
+          </div>
+          <div class="device-row">
+            <span class="status-dot offline"></span>
+            <span class="w-16 text-sm font-medium text-ink">Table 4</span>
+            <div class="battery-bar flex-1"><span style="width:0%"></span></div>
+            <span class="w-10 text-right text-xs tabular text-subtle">Offline</span>
+          </div>
+          <div class="device-row">
+            <span class="status-dot online"></span>
+            <span class="w-16 text-sm font-medium text-ink">Table 5</span>
+            <div class="battery-bar flex-1"><span style="width:100%"></span></div>
+            <span class="w-10 text-right text-xs tabular text-subtle">100%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SETUP ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Setup</p>
+          <h2 class="mt-4 text-display font-light text-ink">On your tables in one afternoon</h2>
+          <p class="mt-5 text-[1.0625rem] leading-relaxed text-subtle">No technician visit, no cabling, no IT ticket.</p>
+        </div>
+        <div class="mt-14 grid gap-10 md:grid-cols-3">
+          <div class="reveal text-center">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">1</div>
+            <h3 class="mt-5 text-base font-semibold text-ink">Connect the tray</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Plug in the charging tray and join it to your existing Wi-Fi network.</p>
+          </div>
+          <div class="reveal text-center" style="--reveal-delay:.1s">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">2</div>
+            <h3 class="mt-5 text-base font-semibold text-ink">Place the devices</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Set one on each table. No mounting, no wiring, no drilling.</p>
+          </div>
+          <div class="reveal text-center" style="--reveal-delay:.2s">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">3</div>
+            <h3 class="mt-5 text-base font-semibold text-ink">Map your floor</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Lay out your tables in the dashboard once. You're live.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CTA ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="reveal mx-auto max-w-3xl rounded-xl2 bg-ink px-8 py-16 text-center text-white md:px-16">
+        <h2 class="text-display font-light">See it on your own floor plan</h2>
+        <p class="mx-auto mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-white/70">
+          Join the waitlist for early access to the dashboard and pilot pricing on the hardware.
+        </p>
+        <a href="waitlist.html" class="btn btn-accent mt-8">Join the waitlist</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-4 lg:px-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+          <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+          Tiltable
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-subtle">One flip calls your server. No app, no waving, no scanning the room.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Explore</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="index.html" class="transition-colors hover:text-ink">Product</a></li>
+          <li><a href="dashboard.html" class="transition-colors hover:text-ink">Dashboard</a></li>
+          <li><a href="service.html" class="transition-colors hover:text-ink">Service</a></li>
+          <li><a href="design.html" class="transition-colors hover:text-ink">Design gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Get started</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="waitlist.html" class="transition-colors hover:text-ink">Join the waitlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-xs text-subtle sm:flex-row sm:justify-between lg:px-10">
+        <p>&copy; <span id="year"></span> Tiltable. Concept product, pre-launch.</p>
+        <p>Built for restaurants, cafés and bars.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

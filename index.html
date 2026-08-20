@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiltable — Flip it. Your team already knows.</title>
+  <meta name="description" content="Tiltable is a tabletop call device for restaurants, cafés and bars. Guests flip it 180° to call for service — no app, no QR code, no waving across the room." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tiltable" />
+  <meta property="og:title" content="Tiltable — Flip it. Your team already knows." />
+  <meta property="og:description" content="A tabletop call device for restaurants, cafés and bars. No app, no QR code — guests flip it 180° and staff see a green light from across the room." />
+  <meta property="og:locale" content="en_US" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%230A0A0B'/%3E%3Crect x='16' y='45' width='32' height='6' rx='3' fill='%2319C36B'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: 'var(--tiltable-ink)',
+            paper: 'var(--tiltable-paper)',
+            mist: 'var(--tiltable-mist)',
+            line: 'var(--tiltable-line)',
+            subtle: 'var(--tiltable-subtle)',
+            tiltable: { green: 'var(--tiltable-green)', deep: 'var(--tiltable-green-deep)', soft: 'var(--tiltable-green-soft)' },
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          letterSpacing: { tightest: '-0.03em' },
+          fontSize: {
+            hero: ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '1.04', letterSpacing: '-0.03em', fontWeight: '300' }],
+            display: ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '300' }],
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(10,10,11,.03), 0 12px 32px rgba(10,10,11,.06)',
+            lift: '0 8px 24px rgba(10,10,11,.08), 0 32px 72px rgba(10,10,11,.12)',
+          },
+          borderRadius: { xl2: '32px' },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ============================= NAV ============================= -->
+  <header id="site-nav">
+    <nav class="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10" aria-label="Primary">
+      <a href="index.html" class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+        Tiltable
+      </a>
+      <ul class="hidden items-center gap-9 text-[0.9rem] md:flex">
+        <li><a href="index.html" class="nav-link" aria-current="page">Product</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="design.html" class="nav-link">Design</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="waitlist.html" class="btn btn-accent hidden sm:inline-flex">Join the waitlist</a>
+        <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center text-ink md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden">
+      <ul class="flex flex-col gap-1 px-6 py-4 text-[0.95rem]">
+        <li><a href="index.html" class="mobile-nav-link flex items-center justify-between py-3" aria-current="page">Product <span class="current-dot h-1.5 w-1.5 rounded-full bg-tiltable-green opacity-0"></span></a></li>
+        <li><a href="dashboard.html" class="mobile-nav-link flex items-center justify-between py-3">Dashboard</a></li>
+        <li><a href="service.html" class="mobile-nav-link flex items-center justify-between py-3">Service</a></li>
+        <li><a href="design.html" class="mobile-nav-link flex items-center justify-between py-3">Design</a></li>
+        <li class="pt-2 pb-2"><a href="waitlist.html" class="btn btn-accent btn-block">Join the waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================= HERO ============================= -->
+    <section class="relative overflow-hidden px-6 pb-20 pt-40 lg:px-10 lg:pt-48">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow justify-center">For restaurants, cafés &amp; bars</p>
+        <h1 class="mt-5 text-hero font-light text-ink text-balance">Flip it. Your team<br class="hidden sm:block" /> already knows.</h1>
+        <p class="mx-auto mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-subtle">
+          Tiltable is a tabletop call device for restaurants, cafés and bars. No app to open, no QR code to scan —
+          guests flip it 180° and your staff sees a green light from anywhere in the room.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a href="waitlist.html" class="btn btn-accent">Join the waitlist</a>
+          <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-16 max-w-4xl">
+        <div class="hero-stage">
+          <canvas id="hero-canvas" aria-label="Rotating 3D render of the Tiltable tabletop device" role="img"></canvas>
+          <div class="fallback-puck" aria-hidden="true"></div>
+        </div>
+        <p class="hero-hint mt-6 justify-center text-center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 9L4 12L8 15M16 9L20 12L16 15M4 12H20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Drag to rotate — hover to pause
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================= 3 STEPS ============================= -->
+    <section id="how-it-works" class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">The core idea</p>
+          <h2 class="mt-4 text-display font-light text-ink">Three steps. Zero training.</h2>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+          <!-- Step 1 -->
+          <div class="reveal flip-step" data-step>
+            <div class="flip-card">
+              <div class="flip-face flip-face--front">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <rect x="70" y="60" width="100" height="66" rx="16" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+                  <rect x="92" y="104" width="56" height="7" rx="3.5" fill="#D8DADD"/>
+                  <path d="M182 58C192 70 192 100 182 112" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <path d="M178 106L182 112L189 109" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <div class="flip-face flip-face--back">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <rect x="70" y="60" width="100" height="66" rx="16" fill="#fff" stroke="#19C36B" stroke-width="2"/>
+                  <rect x="92" y="104" width="56" height="7" rx="3.5" fill="#19C36B"/>
+                  <circle cx="120" cy="93" r="46" fill="none" stroke="#19C36B" stroke-opacity="0.25" stroke-width="2"/>
+                  <text x="120" y="45" text-anchor="middle" font-size="13" font-weight="600" fill="#0A0A0B" font-family="Inter, sans-serif">180°</text>
+                </svg>
+              </div>
+            </div>
+            <h3 class="mt-6 text-base font-semibold text-ink">1. Guest flips the device</h3>
+            <p class="mt-2 text-sm text-subtle">A quiet 180° turn on the table. No app to open, no button to hunt for.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="reveal flip-step" data-step style="--reveal-delay:.1s">
+            <div class="flip-card">
+              <div class="flip-face flip-face--front">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <rect x="70" y="60" width="100" height="66" rx="16" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+                  <rect x="92" y="104" width="56" height="7" rx="3.5" fill="#D8DADD"/>
+                </svg>
+              </div>
+              <div class="flip-face flip-face--back">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <rect x="70" y="60" width="100" height="66" rx="16" fill="#fff" stroke="#19C36B" stroke-width="2"/>
+                  <rect x="92" y="104" width="56" height="7" rx="3.5" fill="#19C36B"/>
+                  <path d="M40 93C40 70 55 52 70 46" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.55"/>
+                  <path d="M28 100C28 66 50 40 72 30" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"/>
+                  <path d="M200 93C200 70 185 52 170 46" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.55"/>
+                  <path d="M212 100C212 66 190 40 168 30" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="mt-6 text-base font-semibold text-ink">2. LED turns green</h3>
+            <p class="mt-2 text-sm text-subtle">Full brightness, visible from across the room — in daylight or dim evening lighting.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="reveal flip-step" data-step style="--reveal-delay:.2s">
+            <div class="flip-card">
+              <div class="flip-face flip-face--front">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <rect x="55" y="40" width="130" height="100" rx="14" fill="none" stroke="#E5E5EA" stroke-width="2"/>
+                  <circle cx="90" cy="70" r="9" fill="#E5E5EA"/>
+                  <circle cx="150" cy="70" r="9" fill="#E5E5EA"/>
+                  <circle cx="90" cy="110" r="9" fill="#19C36B"/>
+                  <circle cx="90" cy="110" r="16" fill="none" stroke="#19C36B" stroke-opacity="0.3" stroke-width="2"/>
+                  <circle cx="150" cy="110" r="9" fill="#E5E5EA"/>
+                </svg>
+              </div>
+              <div class="flip-face flip-face--back">
+                <svg viewBox="0 0 240 180" class="h-full w-full p-8" aria-hidden="true">
+                  <circle cx="120" cy="80" r="24" fill="none" stroke="#0A0A0B" stroke-width="2"/>
+                  <circle cx="120" cy="72" r="8" fill="#0A0A0B"/>
+                  <path d="M104 96C104 86 111 80 120 80C129 80 136 86 136 96" fill="#0A0A0B"/>
+                  <circle cx="150" cy="55" r="13" fill="#19C36B"/>
+                  <path d="M144 55L148.5 60L157 49" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="mt-6 text-base font-semibold text-ink">3. Service arrives</h3>
+            <p class="mt-2 text-sm text-subtle">The nearest available server sees the call and clears it when it's handled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= FEATURES ============================= -->
+    <div class="border-t border-line"></div>
+
+    <!-- Feature 1: Signal LED -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal feature-visual flex aspect-[4/3] items-center justify-center p-10">
+          <svg viewBox="0 0 480 260" class="w-full max-w-md" role="img" aria-label="Two devices side by side: one idle with a dim red light, one active with a bright green light">
+            <rect x="50" y="90" width="150" height="100" rx="22" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+            <rect x="78" y="164" width="94" height="9" rx="4.5" fill="#C0453F" opacity="0.55"/>
+            <text x="125" y="220" text-anchor="middle" font-size="13" fill="#6E6E73" font-family="Inter, sans-serif">Idle</text>
+
+            <rect x="280" y="90" width="150" height="100" rx="22" fill="#fff" stroke="#19C36B" stroke-width="2.5"/>
+            <rect x="308" y="164" width="94" height="9" rx="4.5" fill="#19C36B"/>
+            <path d="M270 140C270 110 285 90 305 80" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <path d="M440 140C440 110 425 90 405 80" stroke="#19C36B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+            <text x="355" y="220" text-anchor="middle" font-size="13" fill="#0A7D48" font-weight="600" font-family="Inter, sans-serif">Called</text>
+          </svg>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">The signal</p>
+          <h2 class="mt-4 text-display font-light text-ink">A light that's impossible to miss</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            Flip the device over and a green LED lights up immediately, at full brightness — visible in daylight
+            and in dim evening service alike. It's the entire interface: no screen to read, no icon to interpret.
+            Just on, or off.
+          </p>
+          <ul class="mt-6 space-y-3 text-sm text-subtle">
+            <li class="flex items-start gap-3"><span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-line"></span>Idle: off, or a dimmed red.</li>
+            <li class="flex items-start gap-3"><span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-tiltable-green"></span>Called: solid green until a server clears it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 2: Visibility across the room -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal order-2 md:order-1">
+          <p class="eyebrow">Line of sight</p>
+          <h2 class="mt-4 text-display font-light text-ink">Visible from anywhere in the room</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            The LED runs around the full edge of the device, not just the top face. Whether your staff is at the
+            pass, behind the bar, or clearing a table across the room, the call reads clearly from any angle —
+            not only when looking straight down at the table.
+          </p>
+        </div>
+        <div class="reveal order-1 card flex aspect-[4/3] items-center justify-center bg-white p-10 md:order-2">
+          <svg viewBox="0 0 480 320" class="w-full max-w-md" role="img" aria-label="Floor plan showing one table's call visible from several points around the room">
+            <rect x="20" y="20" width="440" height="280" rx="24" fill="none" stroke="#E5E5EA" stroke-width="2"/>
+            <circle cx="90" cy="80" r="10" fill="#E5E5EA"/>
+            <circle cx="380" cy="70" r="10" fill="#E5E5EA"/>
+            <circle cx="90" cy="240" r="10" fill="#E5E5EA"/>
+            <circle cx="400" cy="250" r="10" fill="#E5E5EA"/>
+            <circle cx="240" cy="160" r="16" fill="#19C36B"/>
+            <circle cx="240" cy="160" r="26" fill="none" stroke="#19C36B" stroke-opacity="0.35" stroke-width="2"/>
+            <circle cx="240" cy="160" r="36" fill="none" stroke="#19C36B" stroke-opacity="0.18" stroke-width="2"/>
+            <g stroke="#0A0A0B" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="3 5">
+              <line x1="240" y1="160" x2="60" y2="40"/>
+              <line x1="240" y1="160" x2="420" y2="40"/>
+              <line x1="240" y1="160" x2="60" y2="280"/>
+              <line x1="240" y1="160" x2="420" y2="280"/>
+            </g>
+            <circle cx="60" cy="40" r="6" fill="#0A0A0B"/>
+            <circle cx="420" cy="40" r="6" fill="#0A0A0B"/>
+            <circle cx="60" cy="280" r="6" fill="#0A0A0B"/>
+            <circle cx="420" cy="280" r="6" fill="#0A0A0B"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 3: No app required -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal feature-visual flex aspect-[4/3] items-center justify-center p-10">
+          <svg viewBox="0 0 480 260" class="w-full max-w-md" role="img" aria-label="A crossed-out phone icon next to a device being tiltableed">
+            <rect x="60" y="50" width="90" height="150" rx="16" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+            <line x1="80" y1="80" x2="130" y2="80" stroke="#E5E5EA" stroke-width="2"/>
+            <line x1="80" y1="100" x2="130" y2="100" stroke="#E5E5EA" stroke-width="2"/>
+            <line x1="80" y1="120" x2="115" y2="120" stroke="#E5E5EA" stroke-width="2"/>
+            <line x1="50" y1="45" x2="160" y2="205" stroke="#C0453F" stroke-width="3" stroke-linecap="round"/>
+            <rect x="280" y="90" width="140" height="90" rx="20" fill="#fff" stroke="#19C36B" stroke-width="2.5"/>
+            <rect x="304" y="156" width="92" height="8" rx="4" fill="#19C36B"/>
+          </svg>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Zero friction</p>
+          <h2 class="mt-4 text-display font-light text-ink">Nothing for guests to install</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            No app to download, no QR code to scan, no Wi-Fi password to ask for. Guests already know how to flip
+            something over — it's about the most intuitive interface there is. It works correctly on the first try,
+            for every guest at the table.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 4: Battery + charging tray -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal order-2 md:order-1">
+          <p class="eyebrow">Power</p>
+          <h2 class="mt-4 text-display font-light text-ink">Charges itself, ready every shift</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            Devices sit in a charging tray behind the bar or at the host stand. Drop them in at closing, pull
+            them out at opening — there's no cabling to individual tables and nothing for staff to manage during
+            service.
+          </p>
+        </div>
+        <div class="reveal order-1 card flex aspect-[4/3] items-center justify-center bg-white p-10 md:order-2">
+          <svg viewBox="0 0 480 260" class="w-full max-w-md" role="img" aria-label="A charging tray holding four devices">
+            <rect x="70" y="150" width="340" height="40" rx="10" fill="#F0F1F2" stroke="#E5E5EA" stroke-width="2"/>
+            <g>
+              <rect x="95" y="90" width="60" height="66" rx="14" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+              <rect x="180" y="90" width="60" height="66" rx="14" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+              <rect x="265" y="90" width="60" height="66" rx="14" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+              <rect x="350" y="90" width="60" height="66" rx="14" fill="#fff" stroke="#19C36B" stroke-width="2.5"/>
+            </g>
+            <path d="M377 108L368 128H378L371 145L392 118H381L387 108Z" fill="#19C36B"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 5: Durability + cleaning -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal feature-visual flex aspect-[4/3] items-center justify-center p-10">
+          <svg viewBox="0 0 480 260" class="w-full max-w-md" role="img" aria-label="A device being wiped clean with a water droplet beside it">
+            <rect x="170" y="80" width="140" height="100" rx="22" fill="#fff" stroke="#E5E5EA" stroke-width="2"/>
+            <path d="M120 70C170 50 310 50 360 70" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.35"/>
+            <path d="M354 60L360 70L349 75" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+            <path d="M355 190C355 175 368 165 368 150C368 165 381 175 381 190C381 199 373.6 206 364.5 206C359 206 355 199 355 190Z" fill="#19C36B" opacity="0.85"/>
+          </svg>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Built for service</p>
+          <h2 class="mt-4 text-display font-light text-ink">Built for spills, drops and every wipe-down</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            A sealed shell with no buttons or ports on the tabletop surface — wipe it down between covers like
+            anything else on the table. It's built to take the same knocks and spills as the rest of your
+            service ware.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 6: Wi-Fi connectivity -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal order-2 md:order-1">
+          <p class="eyebrow">Setup</p>
+          <h2 class="mt-4 text-display font-light text-ink">Connects to the Wi-Fi you already have</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            Every device joins your existing Wi-Fi network — no separate router, hub or proprietary base station
+            to install. Add a table, remove a table, rearrange the floor for a private event: the fleet follows
+            without a technician visit.
+          </p>
+        </div>
+        <div class="reveal order-1 card flex aspect-[4/3] items-center justify-center bg-white p-10 md:order-2">
+          <svg viewBox="0 0 480 260" class="w-full max-w-md" role="img" aria-label="A Wi-Fi access point connected to several devices">
+            <circle cx="240" cy="60" r="10" fill="#0A0A0B"/>
+            <path d="M215 60C215 40 225 28 240 28C255 28 265 40 265 60" stroke="#0A0A0B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M198 60C198 30 214 12 240 12C266 12 282 30 282 60" stroke="#0A0A0B" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.45"/>
+            <g stroke="#19C36B" stroke-width="2" stroke-dasharray="2 6" fill="none">
+              <line x1="240" y1="70" x2="110" y2="180"/>
+              <line x1="240" y1="70" x2="240" y2="190"/>
+              <line x1="240" y1="70" x2="370" y2="180"/>
+            </g>
+            <rect x="70" y="180" width="80" height="56" rx="12" fill="#fff" stroke="#19C36B" stroke-width="2"/>
+            <rect x="200" y="190" width="80" height="56" rx="12" fill="#fff" stroke="#19C36B" stroke-width="2"/>
+            <rect x="330" y="180" width="80" height="56" rx="12" fill="#fff" stroke="#19C36B" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= BUSINESS IMPACT ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Why it matters</p>
+          <h2 class="mt-4 text-display font-light text-ink">What it means for your floor</h2>
+        </div>
+        <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal card p-7">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M13 2L4 14H12L11 22L20 10H12L13 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">Faster to the table</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Guests are noticed the moment they flip the device — not after minutes of waving or catching an eye.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.08s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">More table turns</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Faster response means faster orders and faster payment — tables free up sooner during peak hours.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.16s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7V12L15.5 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">Less walking, more serving</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Staff stop doing constant round-the-room checks "just in case" and respond to actual calls instead.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.24s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M4 10C4 6.5 7 4 12 4C17 4 20 6.5 20 10C20 13.5 17 16 12 16C10.9 16 9.9 15.85 9 15.58L5 17L6.2 13.8C4.85 12.75 4 11.45 4 10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">Calmer service, better tips</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Attentive without hovering. Guests feel looked after; staff feel less frantic during the rush.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SUBPAGE PREVIEWS ============================= -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Explore Tiltable</p>
+          <h2 class="mt-4 text-display font-light text-ink">The rest of the system</h2>
+        </div>
+        <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <a href="dashboard.html" class="reveal card group block bg-white p-8 transition-transform hover:-translate-y-1">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Dashboard</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">See every table's status live, track response times, and spot slow periods before they become a problem.</p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-tiltable-deep">Explore the dashboard <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:translate-x-1"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="service.html" class="reveal card group block bg-white p-8 transition-transform hover:-translate-y-1" style="--reveal-delay:.08s">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><rect x="7" y="8" width="10" height="12" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M9 8V6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8" stroke="currentColor" stroke-width="1.6"/></svg>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Service wearable</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Give each server their own section — only their tables buzz their wrist, with the table number front and center.</p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-tiltable-deep">See the wearable <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:translate-x-1"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="design.html" class="reveal card group block bg-white p-8 transition-transform hover:-translate-y-1" style="--reveal-delay:.16s">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M4 12C4 12 7 5 12 5C17 5 20 12 20 12C20 12 17 19 12 19C7 19 4 12 4 12Z" stroke="currentColor" stroke-width="1.6"/></svg>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Design gallery</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">An early look at the material and form exploration behind the device — a work in progress, not a finished spec.</p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-tiltable-deep">Browse the gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:translate-x-1"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CTA ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="reveal mx-auto max-w-3xl rounded-xl2 bg-ink px-8 py-16 text-center text-white md:px-16">
+        <h2 class="text-display font-light">Ready to put Tiltable on your tables?</h2>
+        <p class="mx-auto mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-white/70">
+          We're onboarding a small number of pilot restaurants ahead of general availability. Join the waitlist
+          for early access and pilot pricing.
+        </p>
+        <a href="waitlist.html" class="btn btn-accent mt-8">Join the waitlist</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="border-t border-line bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-4 lg:px-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+          <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+          Tiltable
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-subtle">One flip calls your server. No app, no waving, no scanning the room.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Explore</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="index.html" class="transition-colors hover:text-ink">Product</a></li>
+          <li><a href="dashboard.html" class="transition-colors hover:text-ink">Dashboard</a></li>
+          <li><a href="service.html" class="transition-colors hover:text-ink">Service</a></li>
+          <li><a href="design.html" class="transition-colors hover:text-ink">Design gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Get started</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="waitlist.html" class="transition-colors hover:text-ink">Join the waitlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-xs text-subtle sm:flex-row sm:justify-between lg:px-10">
+        <p>&copy; <span id="year"></span> Tiltable. Concept product, pre-launch.</p>
+        <p>Built for restaurants, cafés and bars.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/hero.js"></script>
+</body>
+</html>

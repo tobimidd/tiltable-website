@@ -1,0 +1,6 @@
+.DS_Store
+
+# Claude Code tooling (skills), not part of the website project
+.agents/
+.claude/
+skills-lock.json

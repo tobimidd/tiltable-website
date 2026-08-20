@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiltable Service — It only buzzes for your tables.</title>
+  <meta name="description" content="The Tiltable server wearable concept: a small device that vibrates only for calls from your own section, with the table number front and center." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tiltable" />
+  <meta property="og:title" content="Tiltable Service — It only buzzes for your tables." />
+  <meta property="og:description" content="A server wearable concept that vibrates only for your own section — table number front and center, nothing else to check." />
+  <meta property="og:locale" content="en_US" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%230A0A0B'/%3E%3Crect x='16' y='45' width='32' height='6' rx='3' fill='%2319C36B'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: 'var(--tiltable-ink)', paper: 'var(--tiltable-paper)', mist: 'var(--tiltable-mist)',
+            line: 'var(--tiltable-line)', subtle: 'var(--tiltable-subtle)',
+            tiltable: { green: 'var(--tiltable-green)', deep: 'var(--tiltable-green-deep)', soft: 'var(--tiltable-green-soft)' },
+          },
+          fontFamily: { sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'] },
+          letterSpacing: { tightest: '-0.03em' },
+          fontSize: {
+            hero: ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '1.04', letterSpacing: '-0.03em', fontWeight: '300' }],
+            display: ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '300' }],
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(10,10,11,.03), 0 12px 32px rgba(10,10,11,.06)',
+            lift: '0 8px 24px rgba(10,10,11,.08), 0 32px 72px rgba(10,10,11,.12)',
+          },
+          borderRadius: { xl2: '32px' },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header id="site-nav">
+    <nav class="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10" aria-label="Primary">
+      <a href="index.html" class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+        Tiltable
+      </a>
+      <ul class="hidden items-center gap-9 text-[0.9rem] md:flex">
+        <li><a href="index.html" class="nav-link">Product</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="service.html" class="nav-link" aria-current="page">Service</a></li>
+        <li><a href="design.html" class="nav-link">Design</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="waitlist.html" class="btn btn-accent hidden sm:inline-flex">Join the waitlist</a>
+        <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center text-ink md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden">
+      <ul class="flex flex-col gap-1 px-6 py-4 text-[0.95rem]">
+        <li><a href="index.html" class="mobile-nav-link flex items-center justify-between py-3">Product <span class="current-dot h-1.5 w-1.5 rounded-full bg-tiltable-green opacity-0"></span></a></li>
+        <li><a href="dashboard.html" class="mobile-nav-link flex items-center justify-between py-3">Dashboard</a></li>
+        <li><a href="service.html" class="mobile-nav-link flex items-center justify-between py-3" aria-current="page">Service <span class="current-dot h-1.5 w-1.5 rounded-full bg-tiltable-green opacity-0"></span></a></li>
+        <li><a href="design.html" class="mobile-nav-link flex items-center justify-between py-3">Design</a></li>
+        <li class="pt-2 pb-2"><a href="waitlist.html" class="btn btn-accent btn-block">Join the waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============================= HERO ============================= -->
+    <section class="px-6 pb-20 pt-40 lg:px-10 lg:pt-48">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow justify-center">Server wearable — concept</p>
+        <h1 class="mt-5 text-hero font-light text-ink text-balance">It only buzzes<br class="hidden sm:block" /> for your tables.</h1>
+        <p class="mx-auto mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-subtle">
+          Each server wears a small device that vibrates only for calls from their own section — table number
+          front and center, nothing else to check.
+        </p>
+      </div>
+
+      <div class="reveal mx-auto mt-16 max-w-xs">
+        <div class="watch" aria-hidden="true">
+          <div class="watch-band top"></div>
+          <div class="watch-face">
+            <div class="watch-screen">
+              <div class="idle-view">
+                <p class="text-[10px] font-medium uppercase tracking-wide text-white/50">Section B</p>
+                <p class="tabular mt-1 text-2xl font-light text-white">9:41</p>
+              </div>
+            </div>
+          </div>
+          <div class="watch-band bottom"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= SECTION LOGIC ============================= -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div class="reveal">
+          <p class="eyebrow">Section logic</p>
+          <h2 class="mt-4 text-display font-light text-ink">Only your tables reach your wrist</h2>
+          <p class="mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-subtle">
+            Sections are assigned per shift from the dashboard. When table 7 flips its device, only the server
+            responsible for table 7 feels it — everyone else's wearable stays silent. No more group scrambles
+            when one table calls.
+          </p>
+          <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-subtle">
+            <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full" style="background:var(--tiltable-green-deep)"></span>Server A</li>
+            <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full" style="background:#5B6472"></span>Server B</li>
+            <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full" style="background:#8A7F6B"></span>Server C</li>
+          </ul>
+        </div>
+        <div class="reveal card bg-white p-8">
+          <div class="zone-grid">
+            <div class="zone-cell" style="background:var(--tiltable-green-deep)">1</div>
+            <div class="zone-cell" style="background:var(--tiltable-green-deep)">2</div>
+            <div class="zone-cell" style="background:#5B6472">3</div>
+            <div class="zone-cell" style="background:#5B6472">4</div>
+            <div class="zone-cell" style="background:var(--tiltable-green-deep)">5</div>
+            <div class="zone-cell" style="background:var(--tiltable-green-deep)">6</div>
+            <div class="zone-cell" style="background:#5B6472">7</div>
+            <div class="zone-cell" style="background:#8A7F6B">8</div>
+            <div class="zone-cell" style="background:var(--tiltable-green-deep)">9</div>
+            <div class="zone-cell" style="background:#8A7F6B">10</div>
+            <div class="zone-cell" style="background:#8A7F6B">11</div>
+            <div class="zone-cell" style="background:#8A7F6B">12</div>
+          </div>
+          <p class="mt-5 text-xs text-subtle">Example floor split across three servers. Reassign in seconds when someone calls out or the floor gets busier.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= INTERACTIVE DEMO ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="reveal eyebrow justify-center">Try it</p>
+        <h2 class="reveal mt-4 text-display font-light text-ink">See what your server sees</h2>
+        <p class="reveal mt-5 text-[1.0625rem] leading-relaxed text-subtle">
+          Press the button below to simulate an incoming call from a table in this server's section.
+        </p>
+      </div>
+
+      <div class="reveal mx-auto mt-14 max-w-xs">
+        <div class="watch" id="service-watch">
+          <div class="watch-band top"></div>
+          <div class="watch-face">
+            <div class="watch-screen">
+              <div class="idle-view">
+                <p class="text-[10px] font-medium uppercase tracking-wide text-white/50">Section B</p>
+                <p class="tabular mt-1 text-2xl font-light text-white" id="watch-clock">9:41</p>
+              </div>
+              <div class="call-view">
+                <span class="call-ring" aria-hidden="true"></span>
+                <p class="text-[10px] font-medium uppercase tracking-wide text-white/60">Table</p>
+                <p class="tabular text-3xl font-semibold text-white" data-call-table>—</p>
+                <button type="button" data-acknowledge class="mt-2 text-[10px] font-semibold uppercase tracking-wide text-white/70 underline underline-offset-2">Tap to clear</button>
+              </div>
+            </div>
+          </div>
+          <div class="watch-band bottom"></div>
+        </div>
+        <div class="mt-10 text-center">
+          <button type="button" id="watch-trigger" class="btn btn-ghost">Simulate an incoming call</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= FORM FACTOR COMPARISON ============================= -->
+    <section class="bg-mist px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Form factor</p>
+          <h2 class="mt-4 text-display font-light text-ink">Still an open question</h2>
+          <p class="mt-5 text-[1.0625rem] leading-relaxed text-subtle">Three directions we're weighing. All concept stage — none of this is finalized.</p>
+        </div>
+
+        <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div class="reveal factor-card card bg-white p-7">
+            <span class="badge-concept">Concept stage</span>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Wristband</h3>
+            <p class="mt-2 text-sm text-subtle">Worn like a fitness band, on the wrist all shift.</p>
+            <div class="mt-5 space-y-2 text-sm">
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Always on the wrist — hard to misplace</p>
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hands stay completely free</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Smaller display for table numbers</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Shared hardware needs a charging routine</p>
+            </div>
+          </div>
+
+          <div class="reveal factor-card card bg-white p-7" style="--reveal-delay:.08s">
+            <span class="badge-concept">Concept stage</span>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Smartwatch</h3>
+            <p class="mt-2 text-sm text-subtle">A dedicated watch-style display, purpose-built.</p>
+            <div class="mt-5 space-y-2 text-sm">
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Larger screen, clearer table numbers</p>
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Familiar shape, easy to train on</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Bulkier on the wrist through a shift</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Higher cost per unit</p>
+            </div>
+          </div>
+
+          <div class="reveal factor-card card bg-white p-7" style="--reveal-delay:.16s">
+            <span class="badge-concept">Concept stage</span>
+            <h3 class="mt-5 text-lg font-semibold text-ink">Clip / pendant</h3>
+            <p class="mt-2 text-sm text-subtle">Clips to an apron, collar or belt.</p>
+            <div class="mt-5 space-y-2 text-sm">
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nothing to strap on before a shift</p>
+              <p class="flex items-start gap-2 text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-tiltable-deep"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Easiest to hand off between shifts</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Smaller number display than the wristband</p>
+              <p class="flex items-start gap-2 text-subtle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 shrink-0 text-subtle"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Vibration may be less noticeable than on the wrist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= DAILY LIFE ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="eyebrow justify-center">Day to day</p>
+          <h2 class="mt-4 text-display font-light text-ink">What changes on the floor</h2>
+        </div>
+        <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal card p-7">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M12 3C7 3 3 6.5 3 11C3 13.4 4.2 15.5 6 17V21L10 18.6C10.6 18.7 11.3 18.8 12 18.8C17 18.8 21 15.3 21 10.8C21 6.3 17 3 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><line x1="8" y1="6" x2="4" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">No more shouting across the room</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Calls reach the right person directly — no cupping hands or walking the floor to ask who saw table 9 flip.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.08s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/><line x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">No more scanning for raised hands</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Stop sweeping the room "just in case." If your wrist hasn't buzzed, nobody in your section is waiting.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.16s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><circle cx="7" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M2 20C2 16.5 4.5 14 7 14C9.5 14 12 16.5 12 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 20C12 16.5 14.5 14 17 14C19.5 14 22 16.5 22 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">Coverage evens out automatically</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Calls route to the assigned section, not to whoever notices first — so one server doesn't end up covering for three.</p>
+          </div>
+          <div class="reveal card p-7" style="--reveal-delay:.24s">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" class="text-tiltable-deep" aria-hidden="true"><path d="M12 3V5M12 19V21M3 12H5M19 12H21M5.6 5.6L7 7M17 17L18.4 18.4M18.4 5.6L17 7M7 17L5.6 18.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/></svg>
+            <h3 class="mt-5 text-base font-semibold text-ink">Less noise at peak</h3>
+            <p class="mt-2 text-sm leading-relaxed text-subtle">Fewer shouted handoffs during the rush — just a quiet buzz on the wrist that's meant for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CTA ============================= -->
+    <section class="px-6 py-24 md:py-32 lg:px-10">
+      <div class="reveal mx-auto max-w-3xl rounded-xl2 bg-ink px-8 py-16 text-center text-white md:px-16">
+        <h2 class="text-display font-light">Help shape the wearable</h2>
+        <p class="mx-auto mt-5 max-w-lg text-[1.0625rem] leading-relaxed text-white/70">
+          This part of the system is still open. Join the waitlist and pilot restaurants get a direct say in
+          which form factor ships first.
+        </p>
+        <a href="waitlist.html" class="btn btn-accent mt-8">Join the waitlist</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-4 lg:px-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+          <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+          Tiltable
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-subtle">One flip calls your server. No app, no waving, no scanning the room.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Explore</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="index.html" class="transition-colors hover:text-ink">Product</a></li>
+          <li><a href="dashboard.html" class="transition-colors hover:text-ink">Dashboard</a></li>
+          <li><a href="service.html" class="transition-colors hover:text-ink">Service</a></li>
+          <li><a href="design.html" class="transition-colors hover:text-ink">Design gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Get started</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="waitlist.html" class="transition-colors hover:text-ink">Join the waitlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-xs text-subtle sm:flex-row sm:justify-between lg:px-10">
+        <p>&copy; <span id="year"></span> Tiltable. Concept product, pre-launch.</p>
+        <p>Built for restaurants, cafés and bars.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/service.js"></script>
+</body>
+</html>

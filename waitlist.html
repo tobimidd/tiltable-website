@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join the Tiltable Waitlist</title>
+  <meta name="description" content="Tiltable is in development. Join the waitlist for first access, pilot pricing, and a say in shaping the final device — signing up is non-binding." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tiltable" />
+  <meta property="og:title" content="Join the Tiltable Waitlist" />
+  <meta property="og:description" content="Tiltable is in development. Join the waitlist for first access and pilot pricing — signing up is non-binding." />
+  <meta property="og:locale" content="en_US" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%230A0A0B'/%3E%3Crect x='16' y='45' width='32' height='6' rx='3' fill='%2319C36B'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: 'var(--tiltable-ink)', paper: 'var(--tiltable-paper)', mist: 'var(--tiltable-mist)',
+            line: 'var(--tiltable-line)', subtle: 'var(--tiltable-subtle)',
+            tiltable: { green: 'var(--tiltable-green)', deep: 'var(--tiltable-green-deep)', soft: 'var(--tiltable-green-soft)' },
+          },
+          fontFamily: { sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'] },
+          letterSpacing: { tightest: '-0.03em' },
+          fontSize: {
+            hero: ['clamp(2.75rem, 6vw, 5.25rem)', { lineHeight: '1.04', letterSpacing: '-0.03em', fontWeight: '300' }],
+            display: ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '300' }],
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(10,10,11,.03), 0 12px 32px rgba(10,10,11,.06)',
+            lift: '0 8px 24px rgba(10,10,11,.08), 0 32px 72px rgba(10,10,11,.12)',
+          },
+          borderRadius: { xl2: '32px' },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header id="site-nav">
+    <nav class="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10" aria-label="Primary">
+      <a href="index.html" class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+        Tiltable
+      </a>
+      <ul class="hidden items-center gap-9 text-[0.9rem] md:flex">
+        <li><a href="index.html" class="nav-link">Product</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="service.html" class="nav-link">Service</a></li>
+        <li><a href="design.html" class="nav-link">Design</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="waitlist.html" class="btn btn-accent hidden sm:inline-flex" aria-current="page">Join the waitlist</a>
+        <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center text-ink md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-toggle-icon"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden">
+      <ul class="flex flex-col gap-1 px-6 py-4 text-[0.95rem]">
+        <li><a href="index.html" class="mobile-nav-link flex items-center justify-between py-3">Product</a></li>
+        <li><a href="dashboard.html" class="mobile-nav-link flex items-center justify-between py-3">Dashboard</a></li>
+        <li><a href="service.html" class="mobile-nav-link flex items-center justify-between py-3">Service</a></li>
+        <li><a href="design.html" class="mobile-nav-link flex items-center justify-between py-3">Design</a></li>
+        <li class="pt-2 pb-2"><a href="waitlist.html" class="btn btn-accent btn-block" aria-current="page">Join the waitlist</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="px-6 pb-24 pt-40 lg:px-10 lg:pt-48">
+      <div class="mx-auto max-w-md">
+        <div class="text-center">
+          <p class="eyebrow justify-center">Early access</p>
+          <h1 class="mt-5 text-display font-light text-ink">Join the Tiltable waitlist</h1>
+          <p class="mt-6 text-[1.0625rem] leading-relaxed text-subtle">
+            Tiltable is still in development. Early signups get first access when pilots open, preferred pricing on
+            the hardware, and a direct line to shape what ships. Signing up is non-binding — just a way to raise
+            your hand.
+          </p>
+        </div>
+
+        <div class="mt-12 card border border-line p-7 sm:p-9">
+          <form id="waitlist-form" novalidate>
+            <div class="field-group">
+              <label for="field-name" class="text-sm font-medium text-ink">Name</label>
+              <input type="text" id="field-name" name="name" class="field-input" autocomplete="name" aria-describedby="error-name" />
+              <p id="error-name" class="field-error" role="alert"></p>
+            </div>
+
+            <div class="field-group mt-5">
+              <label for="field-email" class="text-sm font-medium text-ink">Email</label>
+              <input type="email" id="field-email" name="email" class="field-input" autocomplete="email" aria-describedby="error-email" required />
+              <p id="error-email" class="field-error" role="alert"></p>
+            </div>
+
+            <div class="field-group mt-5">
+              <label for="field-restaurant" class="text-sm font-medium text-ink">Restaurant name</label>
+              <input type="text" id="field-restaurant" name="restaurant" class="field-input" autocomplete="organization" />
+            </div>
+
+            <div class="field-group mt-5">
+              <label for="field-tables" class="text-sm font-medium text-ink">Number of tables</label>
+              <select id="field-tables" name="tables" class="field-select">
+                <option value="">Prefer not to say</option>
+                <option value="1-5">1–5</option>
+                <option value="6-10">6–10</option>
+                <option value="11-20">11–20</option>
+                <option value="21-40">21–40</option>
+                <option value="40+">40+</option>
+              </select>
+            </div>
+
+            <div class="field-group mt-6">
+              <div class="checkbox-row">
+                <input type="checkbox" id="field-consent" name="consent" aria-describedby="error-consent" />
+                <label for="field-consent" class="text-sm leading-snug text-subtle">I agree to be contacted about the Tiltable pilot program.</label>
+              </div>
+              <p id="error-consent" class="field-error" role="alert"></p>
+            </div>
+
+            <p id="form-error" class="field-error mt-2 text-center" role="alert"></p>
+
+            <button type="submit" class="btn btn-accent btn-block mt-7">
+              <span class="btn-spinner" aria-hidden="true"></span>
+              <span class="btn-label">Join the waitlist</span>
+            </button>
+            <p class="mt-4 text-center text-xs text-subtle">No spam. Unsubscribe at any time.</p>
+          </form>
+
+          <div id="waitlist-success" class="success-panel" hidden>
+            <div class="success-check">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12L10 17L19 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-ink">You're on the list</h2>
+            <p class="mt-3 text-sm leading-relaxed text-subtle">We'll be in touch before the pilot opens. Thanks for helping shape Tiltable early.</p>
+            <a href="index.html" class="btn btn-ghost mt-6">Back to the product page</a>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <p class="text-center text-xs font-semibold uppercase tracking-wide text-subtle">What happens next</p>
+          <ol class="mt-5 space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="tabular flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mist text-xs font-semibold text-ink">1</span>
+              <span class="text-sm leading-relaxed text-subtle"><strong class="font-medium text-ink">We reach out before the pilot.</strong> No hardware shows up unannounced — you'll hear from us first.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="tabular flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mist text-xs font-semibold text-ink">2</span>
+              <span class="text-sm leading-relaxed text-subtle"><strong class="font-medium text-ink">You help shape the final device.</strong> Early signups get a say in the wearable and dashboard before they're locked in.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="tabular flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mist text-xs font-semibold text-ink">3</span>
+              <span class="text-sm leading-relaxed text-subtle"><strong class="font-medium text-ink">No commitment.</strong> Joining the waitlist doesn't obligate you to anything. Opt out any time.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line bg-mist">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 md:grid-cols-4 lg:px-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 text-[1.05rem] font-semibold tracking-tight text-ink">
+          <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-ink"><span class="h-2 w-2 rounded-full bg-tiltable-green"></span></span>
+          Tiltable
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-subtle">One flip calls your server. No app, no waving, no scanning the room.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Explore</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="index.html" class="transition-colors hover:text-ink">Product</a></li>
+          <li><a href="dashboard.html" class="transition-colors hover:text-ink">Dashboard</a></li>
+          <li><a href="service.html" class="transition-colors hover:text-ink">Service</a></li>
+          <li><a href="design.html" class="transition-colors hover:text-ink">Design gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-subtle">Get started</p>
+        <ul class="mt-4 space-y-3 text-sm text-subtle">
+          <li><a href="waitlist.html" class="transition-colors hover:text-ink">Join the waitlist</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-xs text-subtle sm:flex-row sm:justify-between lg:px-10">
+        <p>&copy; <span id="year"></span> Tiltable. Concept product, pre-launch.</p>
+        <p>Built for restaurants, cafés and bars.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/waitlist.js"></script>
+</body>
+</html>

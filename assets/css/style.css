@@ -1,0 +1,634 @@
+/* =========================================================================
+   Tiltable — shared stylesheet
+   Design tokens live in :root as CSS variables. The Tailwind config in the
+   <head> of every page reads its colors from these same variables, so
+   --tiltable-green is the ONE place to change the brand color.
+   ========================================================================= */
+
+/* ---- Self-hosted Inter (offline-safe, no CDN dependency for text) ---- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/Inter-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Inter-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/Inter-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+/* ---- Design tokens ---- */
+:root {
+  /* Brand — swap this one hex to rebrand the whole site */
+  --tiltable-green: #19C36B;
+  --tiltable-green-deep: #0A7D48;
+  --tiltable-green-soft: #E4F8ED;
+
+  /* Neutrals */
+  --tiltable-ink: #0A0A0B;
+  --tiltable-paper: #FFFFFF;
+  --tiltable-mist: #F5F5F7;
+  --tiltable-line: #E5E5EA;
+  --tiltable-subtle: #6E6E73;
+
+  /* Used only inside the device illustrations (idle-LED red), and for
+     inline form-validation messages. Not a second site accent. */
+  --tiltable-idle-red: #C0453F;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+
+  --shadow-soft: 0 1px 2px rgba(10,10,11,.03), 0 12px 32px rgba(10,10,11,.06);
+  --shadow-lift: 0 8px 24px rgba(10,10,11,.08), 0 32px 72px rgba(10,10,11,.12);
+
+  --ease: cubic-bezier(.16,1,.3,1);
+  --nav-h: 76px;
+}
+
+/* ---- Reset & base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--tiltable-paper);
+  color: var(--tiltable-ink);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, canvas, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+::selection { background: var(--tiltable-green-soft); color: var(--tiltable-ink); }
+
+/* Tabular numerals for anything that counts or updates: timers, metrics,
+   table numbers, battery %, response times. Keeps digits from jittering. */
+.tabular,
+.js-tabular,
+[data-timer],
+[data-metric] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Accessibility helpers ---- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; top: -4rem; left: 1rem; z-index: 100;
+  background: var(--tiltable-ink); color: #fff; font-size: .875rem; font-weight: 600;
+  padding: .75rem 1.25rem; border-radius: 999px; transition: top .25s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+:focus-visible {
+  outline: 2px solid var(--tiltable-green-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================================
+   Navigation
+   ========================================================================= */
+#site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  height: var(--nav-h);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+#site-nav.is-scrolled {
+  background: color-mix(in srgb, var(--tiltable-paper) 84%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: var(--tiltable-line);
+  box-shadow: 0 1px 0 rgba(10,10,11,.02);
+}
+.nav-link {
+  position: relative;
+  padding: .4rem 0;
+  color: var(--tiltable-subtle);
+  font-weight: 500;
+  transition: color .2s var(--ease);
+}
+.nav-link:hover { color: var(--tiltable-ink); }
+.nav-link[aria-current="page"] { color: var(--tiltable-ink); }
+.nav-link[aria-current="page"]::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--tiltable-green); border-radius: 2px;
+}
+
+/* Collapsed by default only once main.js confirms it can run the toggle
+   (see the .js swap in <head>). Without JS, the panel stays expanded so
+   the mobile nav links are never stranded behind a dead button. */
+.js #mobile-menu {
+  max-height: 0; overflow: hidden;
+  border-bottom: 1px solid transparent;
+  transition: max-height .4s var(--ease), border-color .4s var(--ease);
+}
+.js #mobile-menu.open { max-height: 30rem; border-bottom-color: var(--tiltable-line); }
+#mobile-menu { background: var(--tiltable-paper); }
+.mobile-nav-link[aria-current="page"] { color: var(--tiltable-ink); font-weight: 600; }
+.mobile-nav-link[aria-current="page"] .current-dot { opacity: 1; }
+
+.menu-toggle-icon { position: relative; width: 22px; height: 16px; }
+.menu-toggle-icon span {
+  position: absolute; left: 0; right: 0; height: 2px; background: currentColor;
+  border-radius: 2px; transition: transform .3s var(--ease), opacity .3s var(--ease), top .3s var(--ease);
+}
+.menu-toggle-icon span:nth-child(1) { top: 0; }
+.menu-toggle-icon span:nth-child(2) { top: 7px; }
+.menu-toggle-icon span:nth-child(3) { top: 14px; }
+#menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+#menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(2) { opacity: 0; }
+#menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+/* =========================================================================
+   Buttons
+   ========================================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-weight: 600; font-size: .9375rem; line-height: 1;
+  padding: .9rem 1.6rem; border-radius: 999px;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease), opacity .2s var(--ease), background-color .2s var(--ease);
+  white-space: nowrap;
+}
+.btn:active { transform: scale(.97); }
+.btn-accent {
+  background: var(--tiltable-green-deep); color: #fff; box-shadow: var(--shadow-soft);
+}
+.btn-accent:hover { background: color-mix(in srgb, var(--tiltable-green-deep) 88%, black); box-shadow: var(--shadow-lift); }
+.btn-accent:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-ghost {
+  background: var(--tiltable-paper); color: var(--tiltable-ink); border: 1px solid var(--tiltable-line);
+}
+.btn-ghost:hover { border-color: color-mix(in srgb, var(--tiltable-ink) 30%, var(--tiltable-line)); }
+.btn-block { width: 100%; }
+
+.btn-spinner {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+  animation: spin .7s linear infinite;
+  display: none;
+}
+.is-loading .btn-spinner { display: inline-block; }
+.is-loading .btn-label { opacity: .85; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =========================================================================
+   Scroll reveal (IntersectionObserver-driven, see main.js)
+   ========================================================================= */
+/* Hidden-then-fade only applies once .js confirms main.js is running the
+   IntersectionObserver that adds .is-visible again — otherwise (JS
+   blocked/failed) content must never depend on script to become visible. */
+.js .reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* =========================================================================
+   Cards & primitives
+   ========================================================================= */
+.card {
+  background: var(--tiltable-paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+.panel {
+  background: var(--tiltable-mist);
+  border-radius: var(--radius-lg);
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .8125rem; font-weight: 600; letter-spacing: .02em;
+  color: var(--tiltable-green-deep);
+}
+.eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--tiltable-green);
+}
+
+/* =========================================================================
+   Hero — index.html rotating device
+   ========================================================================= */
+.hero-stage {
+  position: relative;
+  width: min(560px, 84vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  touch-action: pan-y;
+}
+#hero-canvas {
+  width: 100%; height: 100%;
+  cursor: grab;
+  outline: none;
+}
+#hero-canvas:active { cursor: grabbing; }
+.hero-stage::after {
+  content: '';
+  position: absolute; left: 50%; bottom: 2%; transform: translateX(-50%);
+  width: 62%; height: 10%;
+  background: radial-gradient(closest-side, rgba(10,10,11,.14), transparent 72%);
+  filter: blur(2px);
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-hint {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8125rem; color: var(--tiltable-subtle);
+  opacity: 0; transition: opacity .5s var(--ease);
+}
+.hero-stage.is-ready ~ .hero-hint { opacity: 1; }
+
+/* CSS-only fallback puck if WebGL is unavailable */
+.fallback-puck {
+  position: absolute; inset: 12%;
+  border-radius: 38%;
+  background:
+    linear-gradient(155deg, #ffffff 0%, #eef0f1 46%, #dfe1e3 100%);
+  box-shadow: var(--shadow-lift), inset 0 0 0 1px rgba(10,10,11,.05);
+  display: none;
+}
+.fallback-puck::before {
+  content: '';
+  position: absolute; left: 8%; right: 8%; bottom: 9%; height: 6%;
+  border-radius: 999px;
+  background: var(--tiltable-green);
+  box-shadow: 0 0 18px 4px color-mix(in srgb, var(--tiltable-green) 60%, transparent);
+  animation: fallback-spin 7s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fallback-puck::before { animation: none; }
+}
+@keyframes fallback-spin {
+  0%, 100% { opacity: .95; }
+  50% { opacity: .5; }
+}
+.no-webgl .fallback-puck { display: block; }
+.no-webgl #hero-canvas { display: none; }
+
+/* =========================================================================
+   Three-step flip sequence
+   ========================================================================= */
+.flip-step {
+  perspective: 900px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+.flip-card {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s var(--ease);
+  transform: rotateY(0deg);
+}
+.flip-step.is-active .flip-card { transform: rotateY(180deg); }
+.flip-face {
+  position: absolute; inset: 0;
+  border-radius: var(--radius-lg);
+  backface-visibility: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--tiltable-mist);
+}
+.flip-face--back { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .flip-card { transition: none; }
+}
+
+/* =========================================================================
+   Feature rows (alternating)
+   ========================================================================= */
+.feature-visual {
+  background: var(--tiltable-mist);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* LED glow util, derived from the single brand var via color-mix */
+.led-glow-green {
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--tiltable-green) 65%, transparent));
+}
+.led-pulse {
+  animation: led-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .led-pulse { animation: none; } }
+@keyframes led-pulse {
+  0%, 100% { filter: drop-shadow(0 0 10px color-mix(in srgb, var(--tiltable-green) 55%, transparent)); }
+  50% { filter: drop-shadow(0 0 20px color-mix(in srgb, var(--tiltable-green) 80%, transparent)); }
+}
+
+/* =========================================================================
+   Dashboard — HTML/CSS software mockup + live demo
+   ========================================================================= */
+.window-frame {
+  background: var(--tiltable-paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+  border: 1px solid var(--tiltable-line);
+  overflow: hidden;
+}
+.window-chrome {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .85rem 1.1rem;
+  background: var(--tiltable-mist);
+  border-bottom: 1px solid var(--tiltable-line);
+}
+.window-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--tiltable-line); }
+
+.floor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .85rem;
+}
+@media (min-width: 640px) { .floor-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+.table-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  background: var(--tiltable-paper);
+  border: 1px solid var(--tiltable-line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .15rem;
+  transition: background-color .35s var(--ease), border-color .35s var(--ease), transform .2s var(--ease);
+}
+.table-tile .t-num { font-weight: 600; font-size: .9rem; }
+.table-tile .t-timer { font-size: .6875rem; color: var(--tiltable-subtle); min-height: 1em; }
+.table-tile.is-calling {
+  background: var(--tiltable-green-soft);
+  border-color: var(--tiltable-green);
+}
+.table-tile.is-calling .t-timer { color: var(--tiltable-green-deep); font-weight: 600; }
+.table-tile .ping {
+  position: absolute; top: -5px; right: -5px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--tiltable-green); display: none;
+}
+.table-tile.is-calling .ping { display: block; }
+.table-tile .ping::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: var(--tiltable-green);
+  animation: pulse-ring 1.6s cubic-bezier(0,.4,.6,1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .table-tile .ping::after { animation: none; } }
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: .7; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.table-tile .serve-btn {
+  display: none;
+  margin-top: .15rem;
+  font-size: .625rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--tiltable-green-deep);
+}
+.table-tile.is-calling .serve-btn { display: inline-block; }
+.table-tile.is-calling .serve-btn:hover { text-decoration: underline; }
+
+.stat-tile {
+  border-radius: var(--radius-md);
+  background: var(--tiltable-paper);
+  border: 1px solid var(--tiltable-line);
+  padding: 1.25rem 1.4rem;
+}
+.stat-tile .stat-value { font-size: 1.75rem; font-weight: 300; letter-spacing: -.02em; }
+.stat-tile .stat-label { font-size: .75rem; color: var(--tiltable-subtle); }
+
+.heat-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; }
+.heat-cell {
+  aspect-ratio: 1 / 1; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6875rem; font-weight: 600; color: var(--tiltable-ink);
+  border: 1px solid var(--tiltable-line);
+}
+
+.battery-bar {
+  position: relative; height: 8px; width: 100%; border-radius: 999px;
+  background: var(--tiltable-line); overflow: hidden;
+}
+.battery-bar > span {
+  position: absolute; inset: 0 auto 0 0; border-radius: 999px;
+  background: var(--tiltable-green);
+}
+.device-row { display: flex; align-items: center; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--tiltable-line); }
+.device-row:last-child { border-bottom: 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.status-dot.online { background: var(--tiltable-green); }
+.status-dot.offline { background: var(--tiltable-subtle); opacity: .5; }
+
+/* =========================================================================
+   Service — wearable, sections & smartwatch demo
+   ========================================================================= */
+.zone-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: .5rem; aspect-ratio: 4 / 3;
+}
+.zone-cell {
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .625rem; font-weight: 600; color: #fff;
+}
+
+.watch {
+  position: relative;
+  width: 220px; height: 264px;
+  margin: 0 auto;
+}
+.watch-band {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 96px; height: 64px; background: var(--tiltable-ink); opacity: .92;
+}
+.watch-band.top { top: -40px; border-radius: 18px 18px 0 0; }
+.watch-band.bottom { bottom: -40px; border-radius: 0 0 18px 18px; }
+.watch-face {
+  position: absolute; inset: 0;
+  border-radius: 46px;
+  background: var(--tiltable-ink);
+  padding: 10px;
+  box-shadow: var(--shadow-lift);
+}
+.watch-screen {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: 34px;
+  background: #101113;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+}
+.watch-screen .idle-view, .watch-screen .call-view {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.watch-screen .call-view { opacity: 0; transform: scale(.92); pointer-events: none; }
+.watch.is-calling .idle-view { opacity: 0; transform: scale(1.05); pointer-events: none; }
+.watch.is-calling .call-view { opacity: 1; transform: scale(1); pointer-events: auto; }
+.watch.is-calling .watch-face { animation: vibrate .5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .watch.is-calling .watch-face { animation: none; } }
+@keyframes vibrate {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2.5px); }
+  40% { transform: translateX(2.5px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+.call-ring {
+  position: absolute; width: 70px; height: 70px; border-radius: 50%;
+  border: 2px solid var(--tiltable-green);
+  animation: pulse-ring 1.6s cubic-bezier(0,.4,.6,1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .call-ring { animation: none; opacity: .4; } }
+
+.factor-card { position: relative; }
+.badge-concept {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--tiltable-subtle); background: var(--tiltable-mist);
+  padding: .3rem .65rem; border-radius: 999px;
+}
+
+/* =========================================================================
+   Design gallery — masonry + lightbox
+   ========================================================================= */
+.masonry {
+  column-count: 1; column-gap: 1.5rem;
+}
+@media (min-width: 640px) { .masonry { column-count: 2; } }
+@media (min-width: 1024px) { .masonry { column-count: 3; } }
+.masonry-item {
+  break-inside: avoid; margin-bottom: 1.5rem;
+  border-radius: var(--radius-md); overflow: hidden;
+  background: var(--tiltable-paper);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.masonry-item:hover { box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+.masonry-item img { width: 100%; height: auto; cursor: zoom-in; }
+.masonry-item figcaption { padding: 1rem 1.1rem 1.25rem; }
+
+.tag-filter {
+  font-size: .8125rem; font-weight: 600; padding: .5rem 1rem; border-radius: 999px;
+  border: 1px solid var(--tiltable-line); color: var(--tiltable-subtle);
+  transition: all .2s var(--ease);
+}
+.tag-filter:hover { border-color: var(--tiltable-ink); color: var(--tiltable-ink); }
+.tag-filter[aria-pressed="true"] {
+  background: var(--tiltable-ink); color: #fff; border-color: var(--tiltable-ink);
+}
+.tag-chip {
+  display: inline-block; font-size: .6875rem; font-weight: 600;
+  color: var(--tiltable-green-deep); background: var(--tiltable-green-soft);
+  padding: .25rem .6rem; border-radius: 999px;
+}
+
+#lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(10,10,11,.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s var(--ease);
+  padding: 4rem 1.25rem;
+}
+#lightbox.open { opacity: 1; visibility: visible; }
+#lightbox figure { max-width: 900px; width: 100%; text-align: center; }
+#lightbox img { max-height: 72vh; margin: 0 auto; border-radius: 12px; }
+#lightbox figcaption { color: #fff; margin-top: 1.25rem; font-size: .9375rem; }
+#lightbox figcaption .lb-tag { color: color-mix(in srgb, var(--tiltable-green) 80%, white); }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,.08); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: background-color .2s var(--ease);
+}
+.lb-btn:hover { background: rgba(255,255,255,.18); }
+.lb-prev { left: 1rem; } .lb-next { right: 1rem; }
+.lb-close { position: absolute; top: 1.25rem; right: 1.25rem; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; justify-content: center; }
+.lb-close:hover { background: rgba(255,255,255,.18); }
+@media (max-width: 640px) {
+  .lb-btn { width: 40px; height: 40px; }
+}
+
+/* =========================================================================
+   Waitlist form
+   ========================================================================= */
+.field-group { display: flex; flex-direction: column; gap: .5rem; }
+.field-input, .field-select {
+  width: 100%;
+  padding: .85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--tiltable-line);
+  background: var(--tiltable-paper);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.field-input:focus, .field-select:focus {
+  outline: none;
+  border-color: var(--tiltable-green-deep);
+  box-shadow: 0 0 0 4px var(--tiltable-green-soft);
+}
+.field-input[aria-invalid="true"], .field-select[aria-invalid="true"] {
+  border-color: var(--tiltable-idle-red);
+}
+.field-error {
+  font-size: .8125rem; color: var(--tiltable-idle-red);
+  min-height: 1.2em;
+}
+.field-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%236E6E73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.checkbox-row { display: flex; align-items: flex-start; gap: .7rem; }
+.checkbox-row input[type="checkbox"] {
+  accent-color: var(--tiltable-green-deep);
+  width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+}
+
+.success-panel { text-align: center; }
+.success-check {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--tiltable-green-soft); color: var(--tiltable-green-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+/* =========================================================================
+   Misc
+   ========================================================================= */
+.divider { height: 1px; background: var(--tiltable-line); border: 0; }
